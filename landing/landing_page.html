@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fried FutureS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #c0a8c0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            background: #000000;
+            border-bottom: 1px solid #2a142a;
+            position: relative;
+        }
+        
+        .gif-container {
+            width: 120px;
+            height: 120px;
+        }
+
+        .gif-container img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        .gif-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #0a050a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #3a203a;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 5px rgba(160, 120, 160, 0.5);
+            margin: 0 40px;
+            color: #c0a8c0;
+            font-weight: 700;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        h1::before, h1::after {
+            content: ">";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #3a203a;
+            font-size: 2.5rem;
+        }
+        
+        h1::before {
+            left: -30px;
+        }
+        
+        h1::after {
+            right: -30px;
+        }
+        
+        nav {
+            background-color: #0a050a;
+            padding: 15px 0;
+            border-bottom: 1px solid #2a142a;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .nav-button {
+            background-color: #0a050a;
+            color: #c0a8c0;
+            border: 1px solid #2a142a;
+            padding: 12px 25px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            font-weight: normal;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-button:hover {
+            background-color: #1a0a1a;
+            color: #d0b8d0;
+            border-color: #3a203a;
+        }
+        
+        .nav-button:hover::before {
+            content: ">";
+            position: absolute;
+            left: 10px;
+            color: #3a203a;
+        }
+        
+        .nav-button:hover::after {
+            content: "<";
+            position: absolute;
+            right: 10px;
+            color: #3a203a;
+        }
+        
+        .nav-button.current {
+            background-color: #1a0a1a;
+            color: #d0b8d0;
+            border-color: #3a203a;
+            font-weight: normal;
+        }
+        
+        main {
+            flex: 1;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .info-section {
+            background: #0a050a;
+            padding: 30px;
+            border-radius: 3px;
+            border: 1px solid #2a142a;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #2a142a, transparent);
+        }
+        
+        h2 {
+            color: #c0a8c0;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2.2rem;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 3px rgba(160, 120, 160, 0.3);
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #b0a0b0;
+        }
+        
+        .tech-border {
+            height: 10px;
+            background: repeating-linear-gradient(
+                45deg,
+                #0a050a,
+                #0a050a 10px,
+                #1a0a1a 10px,
+                #1a0a1a 20px
+            );
+            margin: 25px 0;
+            border-radius: 1px;
+        }
+        
+        footer {
+            background: #000000;
+            padding: 25px;
+            text-align: center;
+            border-top: 1px solid #2a142a;
+        }
+        
+        .contacts {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            color: #c0a8c0;
+        }
+        
+        .tg-link {
+            display: inline-block;
+            background-color: #0a050a;
+            color: #c0a8c0;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 3px;
+            border: 1px solid #2a142a;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .tg-link:hover {
+            background-color: #1a0a1a;
+            color: #d0b8d0;
+            border-color: #3a203a;
+        }
+        
+        @media (max-width: 1100px) {
+            h1 {
+                font-size: 3.5rem;
+                margin: 0 20px;
+            }
+            
+            .gif-container {
+                width: 150px;
+                height: 100px;
+                margin: 0 15px;
+            }
+        }
+        
+        @media (max-width: 850px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .gif-container {
+                width: 80%;
+                height: 100px;
+                margin: 15px 0;
+            }
+            
+            h1 {
+                font-size: 3rem;
+                margin: 20px 0;
+                text-align: center;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-button {
+                margin: 8px 0;
+                width: 80%;
+            }
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+        
+        .flicker {
+            animation: flicker 3s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <div class="gif-container">
+            <div class="gif-placeholder">
+                 <img src="11605171740224560.gif" alt="Гифка">
+            </div>
+        </div>
+        
+        <h1 class="flicker">Fried Futures</h1>
+        
+        <div class="gif-container">
+            <div class="gif-placeholder">
+                 <img src="Cubic_pyramid_rotating.gif" alt="Гифка1">
+            </div>
+        </div>
+    </div>
+    
+    <nav>
+        <div class="nav-container">
+            <button class="nav-button current">Информация</button>
+            <button class="nav-button">Статьи</button>
+            <button class="nav-button">Ассистент</button>
+            <button class="nav-button">Trade box</button>
+            <button class="nav-button">Стажировки</button>
+        </div>
+    </nav>
+    
+    <main>
+        <section class="info-section">
+            <h2>Информация о проекте</h2>
+            <p>Fried Futures - команда энтузиастов в области финансового моделирования.</p>
+            <p></p>
+            
+            <div class="tech-border"></div>
+            
+            <p>Это обучающий проект команды, который может быть полезен начинающим и практикующим квантам.</p>
+            <p>Здесь Вы сможете улучшить свои знания - почитать статьи в разделе "Статьи", задать каверзные вопросы "Ассистенту", а также попрактиковаться в разделе Trade Box.</p>
+        </section>
+    </main>
+    
+    <div class="tech-border"></div>
+    
+    <footer>
+        <div class="contacts">Контакты</div>
+        <a href="https://t.me/fried_future" class="tg-link">Telegram</a>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelector('.nav-button.current').classList.remove('current');
+                this.classList.add('current');
+                
+                const pageTitles = {
+                    'Информация': 'Информация о проекте',
+                    'Статьи': 'Статьи о трейдинге и мат моделировании',
+                    'Ассистент': 'Бот для обучения и глубокого понимания рынка',
+                    'Trade box': 'Моделирование торговой площадки',
+                    'Стажировки': 'Карьерные возможности'
+                };
+                
+                document.querySelector('h2').textContent = pageTitles[this.textContent];
+            });
+        });
+        
+        const elementsToFlicker = document.querySelectorAll('.flicker');
+        
+        setInterval(() => {
+            elementsToFlicker.forEach(el => {
+                if (Math.random() > 0.7) {
+                    el.style.opacity = Math.random() * 0.2 + 0.8;
+                }
+            });
+        }, 300);
+    </script>
+</body>
+</html>
