@@ -1,16 +1,28 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import type { Ref } from 'vue'
 
-const currentPage = ref('info')
-const newMessage = ref('')
-const messages = ref([
+interface Message {
+  id: number;
+  author: string;
+  text: string;
+}
+
+interface Page {
+  id: string;
+  name: string;
+}
+
+const currentPage: Ref<string> = ref('info')
+const newMessage: Ref<string> = ref('')
+const messages: Ref<Message[]> = ref([
   { id: 1, author: 'Бот', text: 'Привет! Спроси что-нибудь о финансовой математике' }
 ])
 
-const requestTimes = ref([])
-const isBlocked = ref(false)
+const requestTimes: Ref<number[]> = ref([])
+const isBlocked: Ref<boolean> = ref(false)
 
-const pages = [
+const pages: Page[] = [
   { id: 'info', name: 'Информация' },
   { id: 'articles', name: 'Статьи' },
   { id: 'assistent', name: 'Ассистент' },
@@ -18,7 +30,7 @@ const pages = [
   { id: 'internships', name: 'Стажировки' }
 ]
 
-const sendMessage = () => {
+const sendMessage = (): void => {
   if (isBlocked.value) return
   if (!newMessage.value.trim()) return
   
@@ -56,12 +68,12 @@ const sendMessage = () => {
 }
 
 onMounted(() => {
-  const flickerElements = document.querySelectorAll('.flicker')
+  const flickerElements = document.querySelectorAll<HTMLElement>('.flicker')
   
   setInterval(() => {
     flickerElements.forEach(el => {
       if (Math.random() > 0.7) {
-        el.style.opacity = Math.random() * 0.2 + 0.8
+        el.style.opacity = (Math.random() * 0.2 + 0.8).toString()
       }
     })
   }, 300)
